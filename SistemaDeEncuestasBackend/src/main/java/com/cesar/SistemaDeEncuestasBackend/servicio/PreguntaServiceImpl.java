@@ -24,15 +24,16 @@ public class PreguntaServiceImpl implements PreguntaService {
     // este metodo guarda preguntas a encuestas ya existentes
     @Override
     public Pregunta agregarPreguntaAEncuesta(Long encuestaId, String contenido) {
+        //buscamos la encuesta para hacerde preguntas
         Optional<Encuesta> optionalEncuesta = encuestaRepository.findById(encuestaId);
 
         return optionalEncuesta.map(encuesta -> {
             Pregunta pregunta = new Pregunta();
             pregunta.setContenido(contenido);
             pregunta.setEncuesta(encuesta);
-            pregunta.setRespuestas(new ArrayList<>()); // nicializo la lista de respuestas
+            pregunta.setRespuestas(new ArrayList<>()); //se deja vacia las respuestas a la pregunta
 
-            encuesta.getPreguntas().add(pregunta);//agregamos todas preguntas a encuestas
+            encuesta.getPreguntas().add(pregunta);//agregamos la pregunta a las encuestas
             encuestaRepository.save(encuesta);// guardo la encuesta despues de haber agregado las preguntas
 
             return pregunta; // Devuelvo la pregunta creada
@@ -70,7 +71,7 @@ public class PreguntaServiceImpl implements PreguntaService {
     public void eliminarPregunta(Long preguntaId) {
             preguntaRepository.findById(preguntaId).ifPresent(pregunta -> {
                 Encuesta encuesta = pregunta.getEncuesta();//obtenemos la encuesta de la pregunta
-                encuesta.getPreguntas().remove(pregunta);// si voy a eliminar una pregunta no lo hago directamente ya que eliminamos la pregunta que desiemos de la lista de preguntas de la encuesta. y asi dañamos su relacion
+                encuesta.getPreguntas().remove(pregunta);// eliminamos la pregunta que desiemos de la lista de preguntas de la encuesta. y asi dañamos su relacion
                 preguntaRepository.deleteById(preguntaId);
                 encuestaRepository.save(encuesta);// almaceno la encuesta con su pregunta eliminada
             });

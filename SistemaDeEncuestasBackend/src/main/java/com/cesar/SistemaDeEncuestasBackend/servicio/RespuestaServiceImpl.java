@@ -39,7 +39,7 @@ public class RespuestaServiceImpl implements RespuestaService{
             respuesta.setContenido(contenido);
             respuesta.setPregunta(pregunta);
 
-            pregunta.getRespuestas().add(respuesta);//agrego las respuestas a una pregunta
+            pregunta.getRespuestas().add(respuesta);//agrego la respuesta a una pregunta
             preguntaRepository.save(pregunta);//guardo la pregunta despues de haber agregado sus  respuestas
             return respuesta;
 
