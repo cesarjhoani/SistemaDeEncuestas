@@ -1,5 +1,6 @@
 package com.cesar.SistemaDeEncuestasBackend.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +15,7 @@ public class Respuesta {
 
     @ManyToOne
     @JoinColumn(name = "pregunta_id")
+    @JsonBackReference//PARA QUE NO SE SERIALIZE
     private Pregunta pregunta;
 
     public Respuesta(Long id, String contenido, Pregunta pregunta) {

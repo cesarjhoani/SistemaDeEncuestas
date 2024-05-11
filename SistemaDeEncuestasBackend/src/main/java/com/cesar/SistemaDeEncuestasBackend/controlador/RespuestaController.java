@@ -25,8 +25,8 @@ public class RespuestaController{
     }
 
     @PostMapping("/agregar/{preguntaId}")
-    public ResponseEntity<Respuesta> agregarRespuestaApregunta(@PathVariable Long preguntaId,@RequestBody String contenido){
-            Respuesta nuevaRespuesta = respuestaService.agregarRespuestaApregunta(preguntaId,contenido);
+    public ResponseEntity<Respuesta> agregarRespuestaApregunta(@PathVariable Long preguntaId,@RequestBody Respuesta respuesta){
+            Respuesta nuevaRespuesta = respuestaService.agregarRespuestaApregunta(preguntaId,respuesta.getContenido());
            // return ResponseEntity.created(new URI("api/respuestas"+nuevaRespuesta.getId())).body(nuevaRespuesta);
             if(nuevaRespuesta!=null){
                return ResponseEntity.ok(nuevaRespuesta);
@@ -47,9 +47,9 @@ public class RespuestaController{
     }
 
     @PutMapping("/{respuestaId}")
-    public ResponseEntity<Respuesta> actualizarRespuestaaApregunta(@PathVariable long respuestaId,@RequestBody String nuevoContenido){
+    public ResponseEntity<Respuesta> actualizarRespuestaaApregunta(@PathVariable long respuestaId,@RequestBody Respuesta respuesta){
 
-        Respuesta respuestaActualizada = respuestaService.actualizarRespuestaaApregunta(respuestaId,nuevoContenido);
+        Respuesta respuestaActualizada = respuestaService.actualizarRespuestaaApregunta(respuestaId,respuesta.getContenido());
         if(respuestaActualizada!=null){
             return ResponseEntity.ok(respuestaActualizada);
         }else {

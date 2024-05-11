@@ -1,5 +1,7 @@
 package com.cesar.SistemaDeEncuestasBackend.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -14,6 +16,9 @@ public class Encuesta {
     private Long id;
     private String titulo;
     @OneToMany(mappedBy = "encuesta",cascade = CascadeType.ALL)
+    @JsonIgnore//EVITA QUE SE SERIALIZE EN JSON
+    //@JsonProperty(access = JsonProperty.Access.READ_ONLY)// Esto permite la deserialización, pero no la serialización osea que se listen sus preguntas en json
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)//
     private List<Pregunta> preguntas = new ArrayList<>();
 
     public Encuesta(Long id, String titulo, List<Pregunta> preguntas) {

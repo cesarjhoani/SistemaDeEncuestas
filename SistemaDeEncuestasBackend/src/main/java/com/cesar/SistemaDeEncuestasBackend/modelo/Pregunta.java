@@ -1,5 +1,7 @@
 package com.cesar.SistemaDeEncuestasBackend.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class Pregunta {
 
     @ManyToOne
     @JoinColumn(name = "encuesta_id")
+    @JsonBackReference//PARA QUE NO SE SERIALIZE
     private Encuesta encuesta;
 
     @OneToMany(mappedBy = "pregunta",cascade = CascadeType.ALL)
