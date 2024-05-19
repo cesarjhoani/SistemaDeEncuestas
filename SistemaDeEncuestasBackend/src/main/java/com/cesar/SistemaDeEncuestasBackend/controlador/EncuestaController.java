@@ -53,7 +53,7 @@ public class EncuestaController {
 
 
     @DeleteMapping("/{encuestaId}")
-    public ResponseEntity<Void> eliminarRespuesta(@PathVariable Long encuestaId){
+    public ResponseEntity<Void> eliminarEncuesta(@PathVariable Long encuestaId){
         encuestaService.eliminarEncuesta(encuestaId);
         return ResponseEntity.noContent().build();//devolvermos nada solo un  204 indicando que se completo
     }
