@@ -1,1 +1,13 @@
-<p>encuesta-form works!</p>
+<div class="container mt-3">
+    <h2>{{encuesta.id ? 'Editar Encuesta':'Nueva Encuesta'}}</h2><!--encuestaId-->
+    <form (ngSubmit)="crearEncuestaOactualizar()">
+        <div class="form-group">
+            <label for="titulo">Titulo:</label>
+            <input class="form-control" 
+            type="text" id="titulo" name="titulo" [(ngModel)]="encuesta.titulo">
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            {{encuestaId ? 'Editar':'Guardar'}}</button>
+    </form>
+</div>

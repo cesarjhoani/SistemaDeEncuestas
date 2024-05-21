@@ -24,8 +24,8 @@ export class EncuestaService {
 
    // para crear una encuesta
 
-   crearEncuesta(titulo:string):Observable<Encuesta>{
-      return this.http.post<Encuesta>(`${this.baseUrl}`,titulo)
+   crearEncuesta(encuesta:Encuesta):Observable<Encuesta>{
+      return this.http.post<Encuesta>(`${this.baseUrl}`,encuesta)//{titulo}
    }
 
    //para acutualizar encuesta
