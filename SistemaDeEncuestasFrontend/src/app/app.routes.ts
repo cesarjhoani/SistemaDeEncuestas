@@ -28,8 +28,8 @@ export const routes: Routes = [
         path:'preguntas',
         children:[
             {path:'',component:PreguntaListComponent},
-            {path:'nueva/:encuestaId',component:PreguntaFormComponent},//agregar pregunta por encuesta
-            {path:'editar/:preguntaId/encuesta/:encuestaId',component:PreguntaFormComponent},//editar pregunta por encuesta
+            {path:'nueva/:encuestaId',component:PreguntaFormComponent},//agregar pregunta a encuesta
+            {path:'editar/:preguntaId/encuesta/:encuestaId',component:PreguntaFormComponent},//editar pregunta a encuesta
             {path:':id',component:PreguntaDetailComponent}//detalle pregunta
         ]
     },

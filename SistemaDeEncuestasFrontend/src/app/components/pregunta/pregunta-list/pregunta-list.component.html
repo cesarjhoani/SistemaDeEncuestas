@@ -1,1 +1,44 @@
-<p>pregunta-list works!</p>
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            todas las preguntas
+        </div>
+        <div class="card-body">
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>contenido</th>
+                        <th>acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pregunta of listaPreguntas">
+                        <td>{{pregunta.id}}</td>
+                        <td>{{pregunta.contenido}}</td>
+                        <td>
+                            <a [routerLink]="'/preguntas/'+pregunta.id" class="btn btn-primary">ver</a>
+                            &nbsp;&nbsp;
+                            <a [routerLink]="'/preguntas/editar/'+pregunta.id +'/encuesta/'+encuestaId" class="btn btn-primary">
+                                editar</a>
+                                <!--<a [routerLink]="['/preguntas', 'editar', pregunta.id, 'encuesta', encuestaId]" class="btn btn-primary">editar</a>-->
+                                &nbsp;&nbsp;
+                                <!--<a (click)="eliminarPregunta(pregunta.id)" class="btn btn-danger">eliminar</a>-->
+                                <a *ngIf="pregunta.id !== undefined" (click)="eliminarPregunta(pregunta.id)" class="btn btn-danger">eliminar</a>
+                                &nbsp;&nbsp;
+                                <a *ngIf="pregunta.id !== undefined" (click)="verRespuestas(pregunta.id)" class="btn btn-secondary">respuestas</a>
+        
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center mt-3">
+                <a routerLink="/preguntas/nueva/{{encuestaId}}" class="btn btn-success">Nueva pregunta</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</div>
