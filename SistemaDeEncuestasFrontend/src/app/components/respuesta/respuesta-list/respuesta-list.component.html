@@ -1,1 +1,38 @@
 <p>respuesta-list works!</p>
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            todas las Respuestas
+        </div>
+        <div class="card-body">
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>contenido</th>
+                        <th>acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let respuesta of listaRespuestas">
+                        <td>{{respuesta.id}}</td>
+                        <td>{{respuesta.contenido}}</td>
+                        <td>
+                            <a [routerLink]="'/respuestas/'+respuesta.id" class="btn btn-primary">ver</a>
+                            &nbsp;&nbsp;
+                            <a [routerLink]="'/respuestas/editar/'+respuesta.id+'/pregunta/'+preguntaId" class="btn btn-warning"><!--mando a preguntaId solo por que lo necesito para que me redirija a listar respuestas por pregunta-->
+                                editar</a>
+                                &nbsp;&nbsp;
+                                <a *ngIf="respuesta.id !== undefined" (click)="eliminarRespuesta(respuesta.id)" class="btn btn-danger">eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center mt-3">
+                <a routerLink="/respuestas/nueva/{{preguntaId}}" class="btn btn-success">Nueva respuesta</a>
+            </div>
+        </div>
+    </div>
+</div>
+

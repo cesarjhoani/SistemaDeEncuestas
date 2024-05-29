@@ -1,6 +1,7 @@
 package com.cesar.SistemaDeEncuestasBackend.modelo;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -23,6 +24,7 @@ public class Pregunta {
     private Encuesta encuesta;
 
     @OneToMany(mappedBy = "pregunta",cascade = CascadeType.ALL)
+    @JsonIgnore//para que no se serialize sus respuestas
     private List<Respuesta> respuestas = new ArrayList<>();
 
     public Pregunta(Long id, String contenido, Encuesta encuesta, List<Respuesta> respuestas) {

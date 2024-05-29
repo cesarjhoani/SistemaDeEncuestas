@@ -27,18 +27,17 @@ export const routes: Routes = [
     {
         path:'preguntas',
         children:[
-            {path:'',component:PreguntaListComponent},
             {path:'nueva/:encuestaId',component:PreguntaFormComponent},//agregar pregunta a encuesta
             {path:'editar/:preguntaId/encuesta/:encuestaId',component:PreguntaFormComponent},//editar pregunta a encuesta
-            {path:':id',component:PreguntaDetailComponent}//detalle pregunta
+            {path:':id',component:PreguntaDetailComponent},//detalle pregunta
+            {path:'respuestas/:preguntaId',component:RespuestaListComponent},//listar respuesta por pregunta
         ]
     },
     {
         path:'respuestas',
         children:[
-            {path:':id/respuesta',component:RespuestaListComponent},//listar respuesta por pregunta
             {path:'nueva/:preguntaId',component:RespuestaFormComponent},//agregar respuesta a pregunta
-            {path:'editar/:respuestaId',component:RespuestaFormComponent},//editar respuesta
+            {path:'editar/:respuestaId/pregunta/:preguntaId',component:RespuestaFormComponent},//editar respuesta a pregunta, recuerde que este "preguntaId" solo lo use para listar las respuestas por preguntas 
             {path:':id',component:RespuestaDetailComponent}//detalle de respuesta
         ]
     }

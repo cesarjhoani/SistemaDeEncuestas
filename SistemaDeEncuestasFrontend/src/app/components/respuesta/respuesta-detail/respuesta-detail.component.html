@@ -1,1 +1,39 @@
 <p>respuesta-detail works!</p>
+
+<div class="container mt-3" *ngIf="respuesta">
+    <div class="card text-center mx-auto" style="max-width: 400px;">
+            <div class="card-header bg-primary text-white">
+                    <h2>Detalles de la respuesta</h2>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <strong>Id</strong>
+                    </div>
+                    <div class="col-md-8">
+                        <strong>{{respuesta.id}}</strong>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <strong>Contenido</strong>
+                    </div>
+                    <div class="col-md-8">
+                        <strong>{{respuesta.contenido}}</strong>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <strong>Pregunta</strong>
+                    </div>
+                    <div class="col-md-8" *ngIf="respuesta.pregunta">
+                        <strong>{{respuesta.pregunta.contenido}}</strong>
+                    </div>
+                    
+                </div>
+        </div>
+    </div>
+    
+</div>
+
+

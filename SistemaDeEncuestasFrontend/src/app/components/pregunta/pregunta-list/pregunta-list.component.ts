@@ -43,7 +43,7 @@ export class PreguntaListComponent {
   }
 
   verRespuestas(preguntaId:number):void{
-      this.router.navigate(['/respuestas',preguntaId])
+      this.router.navigate(['/preguntas/respuestas/',preguntaId])
   }
 
 
