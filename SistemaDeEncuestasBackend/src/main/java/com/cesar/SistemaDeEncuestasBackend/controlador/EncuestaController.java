@@ -19,7 +19,7 @@ public class EncuestaController {
 
     @PostMapping
     public ResponseEntity<Encuesta> crearEncuesta(@RequestBody Encuesta encuesta) {
-        Encuesta Nuevaencuesta = encuestaService.crearEncuesta(encuesta.getTitulo());
+        Encuesta Nuevaencuesta = encuestaService.crearEncuesta(encuesta);
         return ResponseEntity.ok(Nuevaencuesta);
         //return ResponseEntity.created(new URI("/api/encuestas"+encuesta.getId())).body(encuesta);
     }
@@ -42,7 +42,7 @@ public class EncuestaController {
     @PutMapping("/{encuestaId}")
     public ResponseEntity<Encuesta> actualizarEncuesta(@PathVariable Long encuestaId, @RequestBody Encuesta encuesta) {
 
-        Encuesta encuestaActualizada = encuestaService.actualizarEncuesta(encuestaId,encuesta.getTitulo());
+        Encuesta encuestaActualizada = encuestaService.actualizarEncuesta(encuestaId,encuesta);
         if (encuestaActualizada != null) {
             return ResponseEntity.ok(encuestaActualizada);
         } else {

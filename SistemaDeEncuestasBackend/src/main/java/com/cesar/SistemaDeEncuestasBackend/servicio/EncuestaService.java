@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EncuestaService {
-    public Encuesta crearEncuesta(String titulo);
+    public Encuesta crearEncuesta(Encuesta encuesta);
     public List<Encuesta> obtenerTodasLasEncuestas();
 
     public Optional<Encuesta> obtenerDetallesDeEncuesta(Long encuestaId);
 
-    public Encuesta actualizarEncuesta(Long encuestaId,String nuevoTitulo);
+    public Encuesta actualizarEncuesta(Long encuestaId,Encuesta encuesta);
 
     public void eliminarEncuesta(Long encuestaId);
 }

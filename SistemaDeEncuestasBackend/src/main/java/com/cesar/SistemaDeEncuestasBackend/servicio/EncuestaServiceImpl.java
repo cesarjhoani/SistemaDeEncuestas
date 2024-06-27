@@ -15,9 +15,7 @@ public class EncuestaServiceImpl implements EncuestaService{
     @Autowired
     private EncuestaRepository encuestaRepository;
 
-    public Encuesta crearEncuesta(String titulo) {
-        Encuesta encuesta = new Encuesta();
-        encuesta.setTitulo(titulo);
+    public Encuesta crearEncuesta(Encuesta encuesta) {
         return encuestaRepository.save(encuesta);
     }
 
@@ -32,12 +30,10 @@ public class EncuestaServiceImpl implements EncuestaService{
     }
 
         @Override
-        public Encuesta actualizarEncuesta(Long encuestaId, String nuevoTitulo) {
+        public Encuesta actualizarEncuesta(Long encuestaId,Encuesta encuesta) {
             Optional<Encuesta> optionalEncuesta = encuestaRepository.findById(encuestaId);
 
             if (optionalEncuesta.isPresent()) {
-                Encuesta encuesta = optionalEncuesta.get();
-                encuesta.setTitulo(nuevoTitulo);
                 return encuestaRepository.save(encuesta);
             } else {
                 throw new NoSuchElementException("No se encontró ninguna encuesta con el ID: " + encuestaId);

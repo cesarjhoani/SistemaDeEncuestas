@@ -23,17 +23,15 @@ public class PreguntaServiceImpl implements PreguntaService {
 
     // este metodo guarda preguntas a encuestas ya existentes
     @Override
-    public Pregunta agregarPreguntaAEncuesta(Long encuestaId, String contenido) {
-        //buscamos la encuesta para hacerde preguntas
+    public Pregunta agregarPreguntaAEncuesta(Long encuestaId,Pregunta pregunta) {
+        // busco la encuesta por ID para agregarle la nueva pregunta
         Optional<Encuesta> optionalEncuesta = encuestaRepository.findById(encuestaId);
 
         return optionalEncuesta.map(encuesta -> {
-            Pregunta pregunta = new Pregunta();
-            pregunta.setContenido(contenido);
             pregunta.setEncuesta(encuesta);
             pregunta.setRespuestas(new ArrayList<>()); //se deja vacia las respuestas a la pregunta
 
-            encuesta.getPreguntas().add(pregunta);//agregamos la pregunta a las encuestas
+            encuesta.getPreguntas().add(pregunta);//agregamos la pregunta a las encuesta
             encuestaRepository.save(encuesta);// guardo la encuesta despues de haber agregado las preguntas
 
             return pregunta; // Devuelvo la pregunta creada
@@ -53,15 +51,15 @@ public class PreguntaServiceImpl implements PreguntaService {
     }
 
     @Override
-    public Pregunta actualizarPregunta(Long preguntaId, String nuevoContenido, Long encuestaId) {
-      return   preguntaRepository.findById(preguntaId).map(pregunta -> {
-          pregunta.setContenido(nuevoContenido);
+    public Pregunta actualizarPregunta(Long preguntaId,Pregunta pregunta, Long encuestaId) {
+      return   preguntaRepository.findById(preguntaId).map(preguntaExistente -> {
+          preguntaExistente.setContenido(pregunta.getContenido());
           Optional<Encuesta> optionalEncuesta = encuestaRepository.findById(encuestaId);
           //optionalEncuesta.ifPresent(pregunta::setEncuesta);
           if (optionalEncuesta.isPresent()) {
-              pregunta.setEncuesta(optionalEncuesta.get());//actualizamos la pregunta a la encuesta
+              preguntaExistente.setEncuesta(optionalEncuesta.get());//actualizamos la pregunta a la encuesta
           }
-          return preguntaRepository.save(pregunta);
+          return preguntaRepository.save(preguntaExistente);
       }).orElse(null);
 
 

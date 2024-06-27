@@ -38,7 +38,7 @@ public class PreguntaController {
 
     @PostMapping("/agregar/{encuestaId}")
     public ResponseEntity<Pregunta> agregarPreguntaAEncuesta(@PathVariable Long encuestaId,@RequestBody Pregunta pregunta){
-        Pregunta nuevaPregunta = preguntaService.agregarPreguntaAEncuesta(encuestaId,pregunta.getContenido());
+        Pregunta nuevaPregunta = preguntaService.agregarPreguntaAEncuesta(encuestaId,pregunta);
         if(nuevaPregunta!=null){
            return ResponseEntity.ok(nuevaPregunta);//retorno status 200
         }else {
@@ -48,7 +48,7 @@ public class PreguntaController {
 
     @PutMapping("/{preguntaId}/encuesta/{encuestaId}")
     public ResponseEntity<Pregunta> actualizarPregunta(@PathVariable long preguntaId,@RequestBody Pregunta pregunta,@PathVariable Long encuestaId){
-        Pregunta preguntaActualizada = preguntaService.actualizarPregunta(preguntaId,pregunta.getContenido(),encuestaId);
+        Pregunta preguntaActualizada = preguntaService.actualizarPregunta(preguntaId,pregunta,encuestaId);
         if(preguntaActualizada!=null){
             return ResponseEntity.ok(preguntaActualizada);//retorno status 200
         }else {
